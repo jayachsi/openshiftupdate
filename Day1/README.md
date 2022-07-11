@@ -281,3 +281,33 @@ Expected output
 CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES
 9d6cfd192687   ubuntu:16.04   "/bin/bash"   5 seconds ago   Up 5 seconds             ubuntu1
 </pre>
+
+## Listing only running containers
+```
+docker ps
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES
+9d6cfd192687   ubuntu:16.04   "/bin/bash"   5 seconds ago   Up 5 seconds             ubuntu1
+</pre>
+
+## Listing all containers irrespective of their running state
+```
+docker stop ubuntu1
+docker ps
+docker ps -a
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker stop ubuntu1</b>
+ubuntu1
+(jegan@tektutor.org)$ <b>docker ps</b>
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+(jegan@tektutor.org)$ <b>docker ps -a</b>
+CONTAINER ID   IMAGE                COMMAND       CREATED          STATUS                      PORTS     NAMES
+9d6cfd192687   ubuntu:16.04         "/bin/bash"   11 minutes ago   Exited (0) 7 seconds ago              ubuntu1
+</pre>
