@@ -165,6 +165,10 @@
   
 # Docker Commands
 
+## Docker High Level Architecture
+
+![Docker Architecture](DockerHighLevelArchitectureUpdated.png)
+
 ## Checking docker version
 ```
 docker --version
