@@ -157,3 +157,15 @@
   your application binaries into it along with its dependencies(lib)
 - From the JFrog custom Docker Image you can deploy your containerized applications
   
+# Docker Commands
+
+## Checking docker version
+```
+docker --version
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker --version</b>
+Docker version 20.10.7, build 20.10.7-0ubuntu5~18.04.3
+</pre>
