@@ -457,3 +457,19 @@ docker rm -f $(docker ps -aq)
 docker stop $(docker ps -q)
 docker rm $(docker ps -aq)
 ```
+
+## Renaming a container
+```
+docker rename <old-container-name> <new-container-name>
+```
+
+## Restarting a container
+
+This might be useful, let's say you update some web server config file, etc.,
+To apply config changes, you may have to reboot the container, in such cases this command comes in handy.
+
+```
+docker restart <container-name>
+```
+
+IP addresses of container are subject to change when they are either stop and started or restarted.
