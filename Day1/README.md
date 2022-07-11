@@ -169,3 +169,14 @@ Expected output
 (jegan@tektutor.org)$ <b>docker --version</b>
 Docker version 20.10.7, build 20.10.7-0ubuntu5~18.04.3
 </pre>
+
+## Listing Docker Images in your Local Docker Registry
+```
+docker images
+```
+
+Expected output
+<pre>
+jegan@tektutor.org)$ docker images
+REPOSITORY                                           TAG                           IMAGE ID       CREATED         SIZE
+</pre>
