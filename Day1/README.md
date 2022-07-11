@@ -567,3 +567,100 @@ mysql> exit
 Bye
 # exit
 </pre>
+
+
+## Load Balancer example
+```
+docker run -d --name web1 --hostname web1 nginx:latest
+docker run -d --name web2 --hostname web2 nginx:latest
+docker run -d --name web3 --hostname web3 nginx:latest
+
+docker run -d --name lb --hostname lb -p 80:80 nginx:latest
+```
+The port on the left represents host machine where the container is running.
+The port on the right side represents the container port where nginx is listening.
+
+List the containers and see if all containers are in running state
+```
+docker ps
+```
+
+### We need to copy the nginx.conf from lb container to our local machine to configure it as Load Balancer
+```
+docker cp lb:/etc/nginx/nginx.conf .
+```
+
+Update the nginx.conf file locally with the below content
+<pre>
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    upstream backend {
+        server 172.17.0.2:80;
+        server 172.17.0.3:80;
+        server 172.17.0.4:80;
+    }
+    
+    server {
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}
+</pre>
+
+### Find your web1, web2 and web3 container IPs
+```
+docker inspect -f {{.NetworkSettings.IPAddress}} web1
+docker inspect -f {{.NetworkSettings.IPAddress}} web2
+docker inspect -f {{.NetworkSettings.IPAddress}} web3
+```
+
+In the above file, you need to replace the IPs with your web1, web2 and web3 IP addresses respectively.
+<pre>
+172.17.0.2 - nginx web server 1
+172.17.0.3 - nginx web server 2
+172.17.0.4 - nginx web server 3
+</pre>
+
+### Copy the nginx.conf file from local machine to lb container
+```
+docker cp nginx.conf lb:/etc/nginx/nginx.conf
+```
+
+### Restart the lb container to apply config changes
+```
+docker restart lb
+```
+
+### Verify if the lb container is still running after restart
+```
+docker ps
+```
+
+### Let's configure the web1, web2 and web3 index.html to identify which web server is serving us(Optional)
+```
+echo "Server 1" > index.html
+docker cp index.html web1:/usr/share/nginx/html/index.html
+
+echo "Server 2" > index.html
+docker cp index.html web2:/usr/share/nginx/html/index.html
+
+echo "Server 3" > index.html
+docker cp index.html web3:/usr/share/nginx/html/index.html
+```
+
+### Let's test the lb 
+```
+curl http://localhost:80
+```
+If the above curl is not updating the output in round-robin fashion, try localhost from RPS lab machine web browser
