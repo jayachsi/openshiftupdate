@@ -266,3 +266,18 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
  </pre>
+
+
+## Create ubuntu containers in background/deattached/daemon mode
+```
+docker run -dit --name ubuntu1 --hostname ubuntu1 ubuntu:16.04 /bin/bash
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker run -dit --name ubuntu1 --hostname ubuntu1 ubuntu:16.04 /bin/bash</b>
+9d6cfd1926872920dbade1b47ab7a6aab4f69986b997ced6e912824a39d5682c
+(jegan@tektutor.org)$ docker ps
+CONTAINER ID   IMAGE          COMMAND       CREATED         STATUS         PORTS     NAMES
+9d6cfd192687   ubuntu:16.04   "/bin/bash"   5 seconds ago   Up 5 seconds             ubuntu1
+</pre>
