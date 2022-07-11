@@ -59,6 +59,12 @@
  - has its own OS Kernel
  - it supports command prompt in case of Windows, shell prompts ( bash, sh in case of Unix/Linux)
 
+## What is a Linux namespace?
+- its an isolated virtual sandbox environment
+- every container runs in its namespace
+- every container has its own port namespace
+- every container has its network namespace i.e a dedicated network stack (7 OSI Layers)
+
  ## Container Technology
  - is a software technology
  - it is an application virtualization technology
@@ -406,3 +412,28 @@ Access the nginx web page
 curl 172.17.0.3
 ```
 In the above command, 172.17.0.3 is the nginx container IP, it might vary for you.
+
+
+## Deleting a container that is not running
+```
+docker rm <container-id>
+docker rm <container-name>
+```
+
+## Deleting a running container gracefully
+```
+docker stop <container-name>
+docker rm <container-name>
+```
+
+## Deleting a running container forcibly
+```
+docker rm -f <container-name>
+```
+
+## Getting inside a running container
+```
+docker exec -it <container-name> /bin/bash
+```
+Some containers won't support bash, you may replace /bin/bash with /bin/sh in that case.
+
