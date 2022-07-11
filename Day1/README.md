@@ -500,7 +500,7 @@ curl <web3-container-ip>
 docker rmi hello-world:latest
 ```
 
-## Volume Mounting - storgin mysql db and table recorded in an external storage
+## Volume Mounting - storging mysql db and table recorded in an external storage
 ```
 mkdir -p /tmp/mysql
 docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/mysql:/var/lib/mysql mysql:latest
