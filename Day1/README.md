@@ -103,6 +103,57 @@
   2. Private Registry ( Setup using Sonatype Nexus or JFrog Artifactory )
   3. Remote Registry ( Docker Hub Website maintained by Docker Inc )
 
+## JFrog Artifactory
+- this server can be used multiple ways using its web interface
+- can be used like a modern FTP Server that hosts application binaries
+- application binaries can be download/uploaded manually/programatically
+- also servers a repository server
+  - it can be setup within your organization as an Ubuntu apt repository server ( application installer )
+  - it can be setup within your organization as a CentOS/RHEL yum repository server
+- as Private Container Registry
+  - you can host your Propriertary Container Images
+  - Your Private Images will have your application and its dependent libraries/fraweworks, etc
 
+# Ansible
+- comes in two flavors
+  1. Ansible Core (Command line interface only ) - OpenSource
+  2. Ansible Tower ( RedHat Enterprise Product built on top of Ansible Core)
+- configuration management tool like Puppet, Chef, Salt/SaltStack
+- developed in Python by Ansible Inc organization
+- it is used by DevOps Engineers to automate software installation, configuration management, etc.,
+- use may provision containers locally,  provision aws/azure ec2 instances
+- the script that write is called Ansible Playbook ( YAML file )
 
+## Ansible Playbook
+- can build a Custom Docker Image using Dockerfile you supply
+- can provision a container with your Custom Image with basic tools pre-installed
+- can install, configure the container post the container is provisioned
+- can be used to provision a container locally or on cloud
+- can be used to provision an ec2 instance
 
+## Custom Docker Image
+- uses some exiting Docker Image as a base Image
+- customize by installing additional software tools that you need for your specific applicaiton build/test/etc
+-
+
+# Example
+- let's say you have a spring-boot java application
+- to compile this spring java application
+  - you need a build system( VM/Container/Ec2 Instance )
+  - the build machine must have the below 
+    - Java Development Kit
+    - Ant/Maven/Gradle Build tool is required
+    - your application source code
+
+## CI/CD DevOps Pipeline
+- when Java/C# application source code is committed into GitHub or similar version control
+- Jenkins Job can be setup to monitor your application code repository within GitHub
+- Jenkins Job constantly monitors for code changes committed in a particular code repo
+- When Jenkins Job detects code changes, it can trigger an Ansible Playbook to provision the build machine 
+- the newly configured build system will be used to perform the application build
+- As part of application build, it compilers, perform automated tests, package and the binaries will be
+  deployed into JFrog Artifactory
+- As part of the CI/CD pipeline, it is also possible to create custom Docker images from some base Docker Image, copying
+  your application binaries into it along with its dependencies(lib)
+- From the JFrog custom Docker Image you can deploy your containerized applications
+  
