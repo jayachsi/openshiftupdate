@@ -180,3 +180,59 @@ Expected output
 jegan@tektutor.org)$ docker images
 REPOSITORY                                           TAG                           IMAGE ID       CREATED         SIZE
 </pre>
+
+## Downloading an image from Docker Hub to Local Docker Registry
+```
+docker pull ubuntu:22.04
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker pull ubuntu:22.04</b>
+22.04: Pulling from library/ubuntu
+Digest: sha256:b6b83d3c331794420340093eb706a6f152d9c1fa51b262d9bf34594887c2c7ac
+Status: Downloaded newer image for ubuntu:22.04
+docker.io/library/ubuntu:22.04
+</pre>
+
+Listing the images once again to see the downloaded images
+```
+docker images
+```
+
+
+## Listing docker images from Docker Hub
+```
+docker search centos
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker search centos</b>
+NAME                                         DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+centos                                       The official build of CentOS.                   7231      [OK]       
+kasmweb/centos-7-desktop                     CentOS 7 desktop for Kasm Workspaces            21                   
+continuumio/centos5_gcc5_base                                                                3                    
+dokken/centos-7                              CentOS 7 image for kitchen-dokken               2                    
+dokken/centos-stream-9                                                                       1                    
+couchbase/centos7-systemd                    centos7-systemd images with additional debug…   1                    [OK]
+spack/centos7                                CentOS 7 with Spack preinstalled                1                    
+dokken/centos-stream-8                                                                       0                    
+dokken/centos-6                              CentOS 6 image for kitchen-dokken               0                    
+dokken/centos-8                              CentOS 8 image for kitchen-dokken               0                    
+spack/centos6                                CentOS 6 with Spack preinstalled                0                    
+datadog/centos-i386                                                                          0                    
+bitnami/centos-extras-base                                                                   0                    
+corpusops/centos                             centos corpusops baseimage                      0                    
+couchbase/centos-72-java-sdk                                                                 0                    
+couchbase/centos-72-jenkins-core                                                             0                    
+bitnami/centos-base-buildpack                Centos base compilation image                   0                    [OK]
+couchbase/centos-69-sdk-nodevtoolset-build                                                   0                    
+fnndsc/centos-python3                        Source for a slim Centos-based Python3 image…   0                    [OK]
+couchbase/centos-69-sdk-build                                                                0                    
+couchbase/centos-70-sdk-build                                                                0                    
+spack/centos-stream                                                                          0                    
+galaxy/centos-wheel                                                                          0                    
+galaxy/centos32-wheel                                                                        0                    
+galaxy/centos32                                                                              0                    
+</pre>
