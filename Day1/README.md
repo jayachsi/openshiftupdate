@@ -494,3 +494,8 @@ curl <web1-container-ip>
 curl <web2-container-ip>
 curl <web3-container-ip>
 ```
+
+## Deleting an image from local docker registry
+```
+docker rmi hello-world:latest
+```
