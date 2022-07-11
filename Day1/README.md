@@ -80,12 +80,29 @@
  - it has no Kernel or OS
  - containers runs on top of some Operating System
  - all containers that runs on the same system shares hardwares and os Kernel
-
-
-
  
  ## Containers
  - is an instance of Container Image
  - from developer point of view, its an Object of some class
-
  
+## Docker Overview
+- is a container software from Docker Inc 
+- is developed in Go programming language
+- comes in 2 flavors
+  1. Community Edition (CE) - opensource(Free)
+  2. Enterprise Edition (EE) - Requires License/Commercial use
+- follows client/server architecture
+- client tool (docker)
+- server tool (dockerd - application container engine/docker daemon)
+
+## Docker Registry
+- has many Docker Images
+- It is thru images one can create containers
+- Three types
+  1. Local Registry ( local folder where Docker Server is running )
+  2. Private Registry ( Setup using Sonatype Nexus or JFrog Artifactory )
+  3. Remote Registry ( Docker Hub Website maintained by Docker Inc )
+
+
+
+
