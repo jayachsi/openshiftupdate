@@ -437,3 +437,23 @@ docker exec -it <container-name> /bin/bash
 ```
 Some containers won't support bash, you may replace /bin/bash with /bin/sh in that case.
 
+## Deleting multiple exited containers
+```
+docker rm <container-name-1> <container-name-2> <container-name-3>
+```
+
+## Deleting multiple exited containers without using their names
+```
+docker rm $(docker ps -aq)
+```
+
+## Deleting all containers in your system forcibly
+```
+docker rm -f $(docker ps -aq)
+```
+
+## Deleting all containers in your system gracefully
+```
+docker stop $(docker ps -q)
+docker rm $(docker ps -aq)
+```
