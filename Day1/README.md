@@ -499,3 +499,71 @@ curl <web3-container-ip>
 ```
 docker rmi hello-world:latest
 ```
+
+## Volume Mounting - storgin mysql db and table recorded in an external storage
+```
+mkdir -p /tmp/mysql
+docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/mysql:/var/lib/mysql mysql:latest
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker run -d --name db1 --hostname db1 -e MYSQL_ROOT_PASSWORD=root@123 -v /tmp/mysql:/var/lib/mysql mysql:latest</b>
+020f56e867ddf4330153778fa9eb5dfaadf34418af9a9ae1f4fe36ee75c55ce7
+(jegan@tektutor.org)$ <b>docker ps</b>
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS        PORTS                 NAMES
+020f56e867dd   mysql:latest   "docker-entrypoint.s…"   3 seconds ago   Up 1 second   3306/tcp, 33060/tcp   db1
+(jegan@tektutor.org)$ <b>docker exec -it db1 sh</b>
+# <b>mysql -u root -p</b>
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE tektutor;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE tektutor;
+Database changed
+mysql> CREATE TABLE training ( id int, name varchar(60), duration varchar(60) );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO training values ( 1, "
+mysql> INSERT INTO training values ( 1, "Linux Device Drivers", "5 days" );
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO training values ( 2, "Advanced OpenShift", "5 days" );
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM training;
++------+----------------------+----------+
+| id   | name                 | duration |
++------+----------------------+----------+
+|    1 | Linux Device Drivers | 5 days   |
+|    2 | Advanced OpenShift   | 5 days   |
++------+----------------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+# exit
+</pre>
