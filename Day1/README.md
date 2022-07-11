@@ -473,3 +473,24 @@ docker restart <container-name>
 ```
 
 IP addresses of container are subject to change when they are either stop and started or restarted.
+
+## Creating 3 nginx web servers in background mode
+```
+docker run -d --name web1 --hostname web1 nginx:latest
+docker run -d --name web2 --hostname web2 nginx:latest
+docker run -d --name web3 --hostname web3 nginx:latest
+```
+
+Finding the IP Addresses of web1, web2 and web3 respectively
+```
+docker inspect -f {{.NetworkSettings.IPAddress}} web1
+docker inspect -f {{.NetworkSettings.IPAddress}} web2
+docker inspect -f {{.NetworkSettings.IPAddress}} web3
+```
+
+Accessing web1, web2 and web3 container nginx pages
+```
+curl <web1-container-ip>
+curl <web2-container-ip>
+curl <web3-container-ip>
+```
