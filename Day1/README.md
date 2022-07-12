@@ -962,3 +962,20 @@ Removing intermediate container a4924c94fdb1
 Successfully built 5d734013958b
 Successfully tagged tektutor/ubuntu:16.04
 </pre>
+
+#### Creating a container from our custom docker image
+```
+docker run -dit --name c1 --hostname c1 tektutor/ubuntu:16.04 bash
+```
+
+#### Get inside the container c1
+```
+docker exec -it c1 bash
+```
+
+Within the container shell, see if the below commands work
+<pre>
+tree
+ifconfig
+ping localhost
+</pre>
