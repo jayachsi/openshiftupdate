@@ -18,13 +18,12 @@
 - Docker, Podman are Container Engines
 - is a high-level tool that depends on Container Runtime to manage containers
 - also depends on other tools to manage Container Images
-- is purpose is to make things easy for end-user
 - end-user uses Container Engines not the Container Runtime directly
 - Container Engines provide user-friendly commands that  abstracts complex low-level container/image management stuffs
-- end-user doesn't have to deal with low-level stuffs, as Container Engines takes care of low-level stufss internally with the help of Container Engines
+- end-user doesn't have to deal with low-level stuffs, as Container Engines takes care of low-level stuffs internally with the help of Container Engines
 
 ## Container Runtime
-- example: there is runtime called runC
+- example: there is a Container runtime called runC
 - runC is used by Docker
 
 ## Container Orchestration Platform
@@ -52,7 +51,7 @@
       - learning is easy
   - Google Kubernetes
       - supports managing many types of Containers 
-      - Which Containers supports CNI ( Container native interface )
+      - Any Container Runtime that supports Kubernetes CRI(Container Runtime Interface) is supported by Kubernetes
       - Open source
       - time tested
       - production grade Orchestration Tool
@@ -73,14 +72,14 @@
       - RedHat OpenShift => Google Kubernetess + Many Custom Resources + Many Custom Controllers
 
 ## Docker Container Engine
-- every container get's Private IP
+- every container get's a Private IP
 
 ## Kubernetes Built-in Resources
 1. Deployment ( JSON/YAML Configuration - stored in etcd datastore )
    - represents an application deployed within Openshift
    - manages ReplicaSet
    - desired count
-      - no of pods you wish to run within OpenShift
+      - no of application pods you wish to run within OpenShift
 3. ReplicaSet ( JSON/YAML Configuration - stored in etcd datastore )
    - manages Pod(s)
    - desired count - 3 
@@ -88,7 +87,7 @@
    - ready count
 4. Pod ( JSON/YAML Configuration - stored in etcd datastore )
     - smallest unit that is deployable within Kubernetes/OpenShift
-    - every Pod get's Private IP
+    - every Pod get's a Private IP
     - group of related containers 
     - applications run as container within Pod
 
@@ -297,11 +296,11 @@ oc project jegan
 ```
 Expected output
 <pre>
-(jegan@tektutor.org)$ oc project jegan
+(jegan@tektutor.org)$ <b>oc project jegan</b>
 Already on project "jegan" on server "https://api.ocp.tektutor.org:6443".
-(jegan@tektutor.org)$ oc project default
+(jegan@tektutor.org)$ <b>oc project default</b>
 Now using project "default" on server "https://api.ocp.tektutor.org:6443".
-(jegan@tektutor.org)$ oc project jegan
+(jegan@tektutor.org)$ <b>oc project jegan</b>
 Now using project "jegan" on server "https://api.ocp.tektutor.org:6443".
 </pre>
 
@@ -313,7 +312,7 @@ oc delete project jegan
 
 Expected output
 <pre>
-(jegan@tektutor.org)$ oc delete project jegan
+(jegan@tektutor.org)$ <b>oc delete project jegan</b>
 project.project.openshift.io "jegan" deleted
 </pre>
 
@@ -477,7 +476,7 @@ oc rsh deploy/nginx
 
 Expected output
 <pre>
-(jegan@tektutor.org)$ oc rsh deploy/nginx
+(jegan@tektutor.org)$ <b>oc rsh deploy/nginx</b>
 $ ls
 50x.html  index.html
 $ curl 172.30.14.93:8080
@@ -505,6 +504,3 @@ Commercial support is available at
 </body>
 </html>
 </pre>
-
-
-
