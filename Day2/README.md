@@ -183,6 +183,25 @@
 
 # OpenShift Commands
 
+## Create your first project
+```
+oc new-project jegan
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc new-project jegan</b>
+Now using project "jegan" on server "https://api.ocp.tektutor.org:6443".
+
+You can add applications to this project with the 'new-app' command. For example, try:
+
+    oc new-app rails-postgresql-example
+
+to build a new example application in Ruby. Or use kubectl to deploy a simple Kubernetes application:
+
+    kubectl create deployment hello-node --image=k8s.gcr.io/e2e-test-images/agnhost:2.33 -- /agnhost serve-hostname
+</pre>
+
 ## Create your first deployment in RedHat OpenShift
 ```
 oc create deployment nginx --image=nginx:latest --replicas=2
