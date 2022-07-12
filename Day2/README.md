@@ -71,7 +71,78 @@
       - it supports private container registry out of the box
       - it integrates CI/CD
       - RedHat OpenShift => Google Kubernetess + Many Custom Resources + Many Custom Controllers
-      
+
+## Docker Container Engine
+- every container get's Private IP
+
+
+## Kubernetes Built-in Resources
+1. Deployment ( JSON/YAML Configuration - stored in etcd datastore )
+   - represents an application deployed within Openshift
+   - manages ReplicaSet
+   - desired count
+      - no of pods you wish to run within OpenShift
+3. ReplicaSet ( JSON/YAML Configuration - stored in etcd datastore )
+   - manages Pod(s)
+   - desired count - 3 
+   - actual count  - 0
+   - ready count
+4. Pod ( JSON/YAML Configuration - stored in etcd datastore )
+    - smallest unit that is deployable within Kubernetes/OpenShift
+    - every Pod get's Private IP
+    - group of related containers 
+    - applications run as container within Pod
+
+
+## OpenShift client tool
+- kubectl (REST client) - Kubernetes client also works in OpenShift
+- oc (REST client) - OpenShift's exclusive client tool
+
+## RedHat OpenShift Architecture
+- self-healing Orchestration Platform
+- heals user-defined application Pods
+- Cluster
+    - group of OpenShift nodes
+    - Nodes are Physical Servers or Virtual Machines or AWS/AZure ec2 instances
+- Nodes
+    1. Master Node
+    2. Worker Node
+- Master Node
+  - Control Plane Components
+    1. API Server (Pod)
+    2. etcd key/value pair datastore (Pod)
+    3. Scheduler (Pod)
+    4. Controller Managers (Pod)
+       - Deployment Controller
+       - ReplicaSet Controller
+       - Replication Controller
+       - EndPoint Controller
+       - Job Controller
+       - DaemonSet Controller
+       - StatefulSet Controller
+
+  - CRI-O Container Runtime
+  - Podman Container Engine
+  - kubelet
+  - kube-proxy
+  - kubeadm
+ - Worker Node
+   - CRI-O Container Runtime
+   - Podman Container Engine
+   - kubelet
+   - kube-proxy
+   - kubeadm
+
+## API Server
+   - implements OpenShift Orchestration functionalities as REST API
+   - API Server is the only component that communicates with etcd database
+   - API Server triggers events whenever some database records are updated/deleted/created in etcd database
+   - All the OpenShift components communicate only with API Server
+   - OpenShift components won't talk to each other directly 
+
+## Etcd datastore
+- this is where the OpenShift 
+
 ## What is a Custom Resource in Kubernetes/OpenShift?
 
 ## What are Controllers in Kubernetes/OpenShift?
