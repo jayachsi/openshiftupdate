@@ -202,6 +202,16 @@ to build a new example application in Ruby. Or use kubectl to deploy a simple Ku
     kubectl create deployment hello-node --image=k8s.gcr.io/e2e-test-images/agnhost:2.33 -- /agnhost serve-hostname
 </pre>
 
+## Finding the currently active project
+```
+oc project
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc project</b>
+Using project "jegan" on server "https://api.ocp.tektutor.org:6443".
+</pre>
+
 ## Create your first deployment in RedHat OpenShift
 ```
 oc create deployment nginx --image=nginx:latest --replicas=2
