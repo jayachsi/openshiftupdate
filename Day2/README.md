@@ -141,7 +141,33 @@
    - OpenShift components won't talk to each other directly 
 
 ## Etcd datastore
-- this is where the OpenShift 
+- this is where the OpenShift cluster state and application status are stored
+- Deployment, ReplicaSet, Pod, Service, Job, Daemonset, StatefulSet, etc are stored within this database
+- API Server is the only component that is allowed to store/retrieve data from this database
+
+## Scheduler
+- this component is reponsible to identify a healthy node where Pod(application instance) can be deployed
+- keeps looking for Added, Modified, Deleted Pod events
+- the scheduling recommendation will sent to API Server via REST call
+
+## Controller Managers(s)
+- Deployment Controller
+   - Takes Deployment as an Input
+   - It Creates ReplicaSet under the Deployment
+   - Deployment manages the Deployment
+
+- ReplicaSet Controller
+  - accepts ReplicaSet as Input
+  - It creates the desired number of Pods
+
+## kubelet
+- OpenShift Container Agent
+- this runs on every node ie. Master and Worker Node
+- kubelet is the component which communicates with CRI-O Container Runtime
+- kubelet creates the Pods on the node where it runs
+- kubelet receives events from API Server to create, delete, update Pods
+- kubelet once the Pod is created, it constantly monitors and reports the status of Pods to API Server as heart-beat REST calls
+
 
 ## What is a Custom Resource in Kubernetes/OpenShift?
 
