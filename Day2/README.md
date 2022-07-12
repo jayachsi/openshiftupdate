@@ -167,6 +167,7 @@
 - kubelet once the Pod is created, it constantly monitors and reports the status of Pods to API Server as heart-beat REST calls
 
 ![OpenShift Architecture](OpenShiftArchitecture.png)
+![OpenShift Architecture](RedHatOpenShiftArchitecture.png)
 
 ## What is a Custom Resource in Kubernetes/OpenShift?
 
