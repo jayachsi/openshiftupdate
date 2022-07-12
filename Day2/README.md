@@ -168,6 +168,8 @@
 
 ![OpenShift Architecture](OpenShiftArchitecture.png)
 ![OpenShift Architecture](RedHatOpenShiftArchitecture.png)
+![OpenShift Architecture](master-node.png)
+
 
 ## What is a Custom Resource in Kubernetes/OpenShift?
 
