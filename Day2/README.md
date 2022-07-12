@@ -335,3 +335,40 @@ Expected output
 (jegan@tektutor.org)$ <b>oc create deployment nginx --image=nginx:latest --replicas=2</b>
 deployment.apps/nginx created
 </pre>
+
+## Listing the application deployments
+```
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ oc get deployments
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   0/3     3            0           11s
+(jegan@tektutor.org)$ oc get deployment
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   0/3     3            0           7s
+(jegan@tektutor.org)$ oc get deploy
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   0/3     3            0           13s
+</pre>
+
+## Listing replicasets
+```
+oc get replicasets
+oc get replicaset
+oc get rs
+```
+
+Expected ouptut
+<pre>
+(jegan@tektutor.org)$ oc get replicasets
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-7c658794b9   3         3         0       3m31s
+(jegan@tektutor.org)$ oc get replicaset
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-7c658794b9   3         3         0       3m36s
+(jegan@tektutor.org)$ oc get rs
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-7c658794b9   3         3         0       3m37s
+</pre>
