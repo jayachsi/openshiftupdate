@@ -416,3 +416,13 @@ pod/nginx-78644964b4-dtvkq   1/1     Running   0          72s
 pod/nginx-78644964b4-gbm4p   1/1     Running   0          72s
 pod/nginx-78644964b4-w48ks   1/1     Running   0          72s
 </pre>
+
+## Port-forward a Pod to access its web page
+```
+oc port-forward pod/nginx-78644964b4-n95ww 9000:8080
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc port-forward pod/nginx-78644964b4-n95ww 9000:8080</b>
+</pre>
