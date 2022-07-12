@@ -342,13 +342,13 @@ deployment.apps/nginx created
 
 Expected output
 <pre>
-(jegan@tektutor.org)$ oc get deployments
+(jegan@tektutor.org)$ <b>oc get deployments</b>
 NAME    READY   UP-TO-DATE   AVAILABLE   AGE
 nginx   0/3     3            0           11s
-(jegan@tektutor.org)$ oc get deployment
+(jegan@tektutor.org)$ <b>oc get deployment</b>
 NAME    READY   UP-TO-DATE   AVAILABLE   AGE
 nginx   0/3     3            0           7s
-(jegan@tektutor.org)$ oc get deploy
+(jegan@tektutor.org)$ <b>oc get deploy</b>
 NAME    READY   UP-TO-DATE   AVAILABLE   AGE
 nginx   0/3     3            0           13s
 </pre>
@@ -362,13 +362,13 @@ oc get rs
 
 Expected ouptut
 <pre>
-(jegan@tektutor.org)$ oc get replicasets
+(jegan@tektutor.org)$ <b>oc get replicasets</b>
 NAME               DESIRED   CURRENT   READY   AGE
 nginx-7c658794b9   3         3         0       3m31s
-(jegan@tektutor.org)$ oc get replicaset
+(jegan@tektutor.org)$ <b>oc get replicaset</b>
 NAME               DESIRED   CURRENT   READY   AGE
 nginx-7c658794b9   3         3         0       3m36s
-(jegan@tektutor.org)$ oc get rs
+(jegan@tektutor.org)$ <b>oc get rs</b>
 NAME               DESIRED   CURRENT   READY   AGE
 nginx-7c658794b9   3         3         0       3m37s
 </pre>
