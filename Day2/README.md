@@ -425,4 +425,7 @@ oc port-forward pod/nginx-78644964b4-n95ww 9000:8080
 Expected output
 <pre>
 (jegan@tektutor.org)$ <b>oc port-forward pod/nginx-78644964b4-n95ww 9000:8080</b>
+Forwarding from 127.0.0.1:9000 -> 8080
+Forwarding from [::1]:9000 -> 8080
+Handling connection for 9000
 </pre>
