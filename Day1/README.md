@@ -169,6 +169,8 @@
 
 ![Docker Architecture](DockerHighLevelArchitectureUpdated.png)
 
+![Docker Image Architecture](DockerLayers.png)
+
 ## Checking docker version
 ```
 docker --version
