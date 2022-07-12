@@ -394,3 +394,23 @@ Expected output
 (jegan@tektutor.org)$ <b>oc create deployment nginx --image=bitnami/nginx:latest --replicas=3</b>
 deployment.apps/nginx created
 </pre>
+
+## Listing deployments, replicaset and pods all at once
+```
+oc get deploy,rs,po
+```
+
+Expected output
+<pre>
+jegan@tektutor.org)$ <b>oc get deploy,rs,po</b>
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx   3/3     3            3           72s
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-78644964b4   3         3         3       72s
+
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/nginx-78644964b4-dtvkq   1/1     Running   0          72s
+pod/nginx-78644964b4-gbm4p   1/1     Running   0          72s
+pod/nginx-78644964b4-w48ks   1/1     Running   0          72s
+</pre>
