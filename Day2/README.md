@@ -4,7 +4,7 @@
 - Linux Technology
 - Linux Kernel Feature
   1. Namespace ( helps isolating one container from other containers )
-  2. Control Group (CGroup) - apply resource quota restricts
+  2. Control Group (CGroup) - helps in appling resource quota restricts
 - Windows Core ( Windows Kernel)
 
 ## Container  
