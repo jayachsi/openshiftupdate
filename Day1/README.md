@@ -672,13 +672,13 @@ curl http://localhost:80
 If the above curl is not updating the output in round-robin fashion, try localhost from RPS lab machine web browser
 
 
-## Checking application logs
+## Lab - Checking application logs
 ```
 docker run -d --name nginx1 --hostname nginx1 nginx:latest
 docker logs nginx1
 ```
 
-## Creating custom docker image
+## Lab - Creating custom docker image
 
 #### Create a file name Dockerfile with the below content
 ```
