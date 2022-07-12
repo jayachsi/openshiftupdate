@@ -289,6 +289,21 @@ openshift-user-workload-monitoring                                Active
 openshift-vsphere-infra                                           Active
 </pre>
 
+## Switching to a project
+```
+oc project jegan
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ oc project jegan
+Already on project "jegan" on server "https://api.ocp.tektutor.org:6443".
+(jegan@tektutor.org)$ oc project default
+Now using project "default" on server "https://api.ocp.tektutor.org:6443".
+(jegan@tektutor.org)$ oc project jegan
+Now using project "jegan" on server "https://api.ocp.tektutor.org:6443".
+</pre>
+
+
 ## Create your first deployment in RedHat OpenShift
 ```
 oc create deployment nginx --image=nginx:latest --replicas=2
