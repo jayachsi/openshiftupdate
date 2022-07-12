@@ -383,3 +383,14 @@ oc delete deploy/nginx
 (jegan@tektutor.org)$ <b>oc delete deploy/nginx</b>
 deployment.apps "nginx" deleted
 </pre>
+
+## Creating nginx deployment using bitnami image
+```
+oc create deployment nginx --image=bitnami/nginx:latest --replicas=3
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc create deployment nginx --image=bitnami/nginx:latest --replicas=3</b>
+deployment.apps/nginx created
+</pre>
