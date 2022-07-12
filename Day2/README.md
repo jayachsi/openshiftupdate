@@ -75,7 +75,6 @@
 ## Docker Container Engine
 - every container get's Private IP
 
-
 ## Kubernetes Built-in Resources
 1. Deployment ( JSON/YAML Configuration - stored in etcd datastore )
    - represents an application deployed within Openshift
@@ -92,7 +91,6 @@
     - every Pod get's Private IP
     - group of related containers 
     - applications run as container within Pod
-
 
 ## OpenShift client tool
 - kubectl (REST client) - Kubernetes client also works in OpenShift
@@ -168,6 +166,7 @@
 - kubelet receives events from API Server to create, delete, update Pods
 - kubelet once the Pod is created, it constantly monitors and reports the status of Pods to API Server as heart-beat REST calls
 
+![OpenShift Architecture](OpenShiftArchitecture.png)
 
 ## What is a Custom Resource in Kubernetes/OpenShift?
 
