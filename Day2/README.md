@@ -372,3 +372,14 @@ nginx-7c658794b9   3         3         0       3m36s
 NAME               DESIRED   CURRENT   READY   AGE
 nginx-7c658794b9   3         3         0       3m37s
 </pre>
+
+
+## Deleting a deployment
+```
+oc delete deploy/nginx
+```
+
+<pre>
+(jegan@tektutor.org)$ <b>oc delete deploy/nginx</b>
+deployment.apps "nginx" deleted
+</pre>
