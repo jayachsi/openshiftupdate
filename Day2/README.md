@@ -179,3 +179,20 @@
 - Controllers also take care of scaling up/down 
    - When user-traffic increase, they can help add more Pods to load-balance and serve the end users better
    - self-healing of itself and user application
+
+
+# OpenShift Commands
+
+## Create your first deployment in RedHat OpenShift
+```
+oc create deployment nginx --image=nginx:latest --replicas=2
+```
+In the above command
+<pre>
+oc - is the openshift client tool
+create - is used create different types of OpenShift resources
+deployment - resource type
+nginx - name of our deployment, user-defined
+image=nginx:latest - represents which container image it should to deploy the application Pods
+replicas - indicates how many Pods should be created using nginx:latest container image
+</pre>
