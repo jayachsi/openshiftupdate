@@ -196,3 +196,9 @@ nginx - name of our deployment, user-defined
 image=nginx:latest - represents which container image it should to deploy the application Pods
 replicas - indicates how many Pods should be created using nginx:latest container image
 </pre>
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc create deployment nginx --image=nginx:latest --replicas=2</b>
+deployment.apps/nginx created
+</pre>
