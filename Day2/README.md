@@ -303,6 +303,18 @@ Now using project "default" on server "https://api.ocp.tektutor.org:6443".
 Now using project "jegan" on server "https://api.ocp.tektutor.org:6443".
 </pre>
 
+## Deleting a project
+The below command will delete all the deployments, services, etc within the project, including the project.
+```
+oc delete project jegan
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ oc delete project jegan
+project.project.openshift.io "jegan" deleted
+</pre>
+
 
 ## Create your first deployment in RedHat OpenShift
 ```
