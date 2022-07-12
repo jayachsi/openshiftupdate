@@ -429,3 +429,43 @@ Forwarding from 127.0.0.1:9000 -> 8080
 Forwarding from [::1]:9000 -> 8080
 Handling connection for 9000
 </pre>
+
+## Creating ClusterIP Internal Service
+```
+oc expose deploy/nginx --type=ClusterIP --port=8080
+oc get services
+oc get service
+oc get svc
+oc describe svc/nginx
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc expose deploy/nginx --type=ClusterIP --port=8080</b>
+service/nginx exposed
+(jegan@tektutor.org)$ <b>oc get services</b>
+NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+nginx   ClusterIP   172.30.14.93   <none>        8080/TCP   7s
+(jegan@tektutor.org)$ <b>oc get service</b>
+NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+nginx   ClusterIP   172.30.14.93   <none>        8080/TCP   11s
+(jegan@tektutor.org)$ <b>oc get svc</b>
+NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+nginx   ClusterIP   172.30.14.93   <none>        8080/TCP   13s
+(jegan@tektutor.org)$ <b>oc describe svc/nginx</b>
+Name:              nginx
+Namespace:         jegan
+Labels:            app=nginx
+Annotations:       <none>
+Selector:          app=nginx
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                172.30.14.93
+IPs:               172.30.14.93
+Port:              <unset>  8080/TCP
+TargetPort:        8080/TCP
+Endpoints:         10.128.0.76:8080,10.128.0.77:8080,10.128.0.78:8080 + 17 more...
+Session Affinity:  None
+Events:            <none>
+</pre>
