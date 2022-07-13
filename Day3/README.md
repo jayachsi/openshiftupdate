@@ -109,3 +109,9 @@ ETCDCTL_API=3 etcdctl get "/kubernetes.io/deployments" --prefix --keys-only| sed
 ETCDCTL_API=3 etcdctl get "/kubernetes.io/deployments/jegan" --prefix --keys-only| sed '/^\s*$/d'
 ```
 In the above command, you need to replace 'jegan' with 'your-project-name'
+
+
+## Listing all pods under your project
+```
+ETCDCTL_API=3 etcdctl get "/kubernetes.io/pods/jegan" --prefix --keys-only| sed '/^\s*$/d'
+```
