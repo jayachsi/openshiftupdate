@@ -133,9 +133,6 @@ https://medium.com/tektutor/using-metallb-loadbalancer-with-bare-metal-openshift
 </pre>
 
 
-
-## Creating a deployment in declarative sytle
-```
 ## Creating a deployment in declarative style
 ```
 oc create deploy nginx --image=bitnami/nginx:latest --replicas=3 --dry-run=client -o yaml > nginx-deploy.yml
