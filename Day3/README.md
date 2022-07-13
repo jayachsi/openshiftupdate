@@ -205,3 +205,57 @@ Create the pod
 ```
 oc apply -f nginx-pod.yml
 ```
+
+## Performing rolling update
+Let's delete any existing deployments that we have
+```
+cd ~/openshift-july-2022
+git pull
+cd Day3/manifests
+
+oc delete -f nginx-deploy.yml
+```
+
+Let's edit the nginx-deploy.yml and update the bitnami/nginx:latest to bitnami/nginx:1.21
+```
+cd ~/openshift-july-2022
+cd Day3/manifests
+
+oc apply -f nginx-deploy.yml
+```
+
+You may verify the version of container in the deployment
+```
+oc edit deploy/nginx
+```
+The expectation is the image version should be bitnami/nginx:1.21
+
+
+Let's edit the nginx-deploy.yml and update the bitnami/nginx:1.21 to bitnami/nginx:1.22
+```
+cd ~/openshift-july-2022
+cd Day3/manifests
+
+oc apply -f nginx-deploy.yml
+```
+
+You may verify the version of container in the deployment
+```
+oc edit deploy/nginx
+```
+The expectation is the image version should be bitnami/nginx:1.22
+
+
+Let's edit the nginx-deploy.yml and update the bitnami/nginx:1.22 to bitnami/nginx:1.23
+```
+cd ~/openshift-july-2022
+cd Day3/manifests
+
+oc apply -f nginx-deploy.yml
+```
+
+You may verify the version of container in the deployment
+```
+oc edit deploy/nginx
+```
+The expectation is the image version should be bitnami/nginx:1.23
