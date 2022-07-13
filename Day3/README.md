@@ -120,3 +120,28 @@ ETCDCTL_API=3 etcdctl get "/kubernetes.io/pods/jegan" --prefix --keys-only| sed 
 ```
 ETCDCTL_API=3 etcdctl get "/kubernetes.io/services/endpoints/jegan" --prefix --keys-only| sed '/^\s*$/d'
 ```
+
+## Creating a LoadBalancer Service
+```
+oc create deploy nginx --image=bitnami/nginx --replicas=3
+oc expose deploy/nginx --type=LoadBalancer --port=8080
+```
+
+You need to install MetalLB operator to enable the LoadBalancer service in bare-metal OpenShift setup
+<pre>
+https://medium.com/tektutor/using-metallb-loadbalancer-with-bare-metal-openshift-onprem-4230944bfa35
+</pre>
+
+
+
+## Creating a deployment in declarative sytle
+```
+## Creating a deployment in declarative style
+```
+oc create deploy nginx --image=bitnami/nginx:latest --replicas=3 --dry-run=client -o yaml > nginx-deploy.yml
+```
+
+#### Create nginx deployment using the above generated manifest(yaml) file
+```
+oc apply -f nginx-deploy.yml
+```
