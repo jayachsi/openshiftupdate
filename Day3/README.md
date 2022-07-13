@@ -142,3 +142,24 @@ oc create deploy nginx --image=bitnami/nginx:latest --replicas=3 --dry-run=clien
 ```
 oc apply -f nginx-deploy.yml
 ```
+
+## Creating a ClusterIP internal service in declarative sytle
+```
+oc delete svc/nginx
+oc expose deploy/nginx --type=ClusterIP --port=8080 --dry-run=client -o yaml > nginx-clusterip-svc.yml
+oc apply -f nginx-clusterip-svc.yml
+```
+
+## Creating a NodePort external service in declarative sytle
+```
+oc delete svc/nginx
+oc expose deploy/nginx --type=NodePort --port=8080 --dry-run=client -o yaml > nginx-nodeport-svc.yml
+oc apply -f nginx-nodeport-svc.yml
+```
+
+## Creating a LoadBalancer external service in declarative sytle
+```
+oc delete svc/nginx
+oc expose deploy/nginx --type=LoadBalancer --port=8080 --dry-run=client -o yaml > nginx-lb-svc.yml
+oc apply -f nginx-lb-svc.yml
+```
