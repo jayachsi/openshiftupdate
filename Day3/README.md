@@ -101,7 +101,7 @@ You need to select master-1 or master-2 or master-3 etcd Pod and switch to the T
 
 List deployments in all namespaces/projects
 ```
-ETCDCTL_API=3 etcdctl get "/kubernetes.io/deployment" --prefix --keys-only| sed '/^\s*$/d'
+ETCDCTL_API=3 etcdctl get "/kubernetes.io/deployments" --prefix --keys-only| sed '/^\s*$/d'
 ```
 
 ## Listing the deployment in your project
