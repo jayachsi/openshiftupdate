@@ -103,3 +103,9 @@ List deployments in all namespaces/projects
 ```
 ETCDCTL_API=3 etcdctl get "/kubernetes.io/deployment" --prefix --keys-only| sed '/^\s*$/d'
 ```
+
+## Listing the deployment in your project
+```
+ETCDCTL_API=3 etcdctl get "/kubernetes.io/deployments/jegan" --prefix --keys-only| sed '/^\s*$/d'
+```
+In the above command, you need to replace 'jegan' with 'your-project-name'
