@@ -197,6 +197,7 @@ oc get po
 
 Let's delete the replicaset declartively
 ```
+cd ~/openshift-july-2022/Day3/manifests
 oc delete -f nginx-rs.yml
 ```
 
