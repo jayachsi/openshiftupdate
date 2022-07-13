@@ -193,3 +193,14 @@ oc apply -f nginx-rs.yml
 oc get po
 ```
 
+## Creating Pod in declarative style
+
+Let's delete the replicaset declartively
+```
+oc delete -f nginx-rs.yml
+```
+
+Create the pod
+```
+oc apply -f nginx-pod.yml
+```
