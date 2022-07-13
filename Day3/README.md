@@ -45,3 +45,61 @@ Many ways applications can be deployed in OpenShift
   - Copy your application binary into the Custom Image
 
   - Using the custom image that has your application, it will deploy into OpenShift
+
+## Creating a NodePort external service
+
+#### Let's delete any existing deployment we have
+```
+oc delete deploy/nginx svc/nginx route/nginx
+```
+
+#### Let's create a new deployment
+```
+oc create deploy nginx --image=bitnami/nginx:latest --replicas=3
+oc expose deploy/nginx --type=NodePort --port=8080
+```
+
+#### Let's access the NodePort service
+```
+curl master-1.ocp.tektutor.org:31505
+curl master-2.ocp.tektutor.org:31505
+curl master-3.ocp.tektutor.org:31505
+curl worker-1.ocp.tektutor.org:31505
+curl worker-2.ocp.tektutor.org:31505
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ curl 192.168.122.87:31505
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+</pre>
+
+## Viewing the etcd datastore records from OpenShift webconsole
+You need to select master-1 or master-2 or master-3 etcd Pod and switch to the Terminal
+
+List deployments in all namespaces/projects
+```
+ETCDCTL_API=3 etcdctl get "/kubernetes.io/deployment" --prefix --keys-only| sed '/^\s*$/d'
+```
