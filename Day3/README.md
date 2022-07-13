@@ -227,6 +227,9 @@ oc apply -f nginx-deploy.yml
 You may verify the version of container in the deployment
 ```
 oc edit deploy/nginx
+oc rollout status deploy/nginx
+oc rollout history deploy/nginx
+
 ```
 The expectation is the image version should be bitnami/nginx:1.21
 
@@ -242,6 +245,8 @@ oc apply -f nginx-deploy.yml
 You may verify the version of container in the deployment
 ```
 oc edit deploy/nginx
+oc rollout status deploy/nginx
+oc rollout history deploy/nginx
 ```
 The expectation is the image version should be bitnami/nginx:1.22
 
