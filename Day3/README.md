@@ -115,3 +115,8 @@ In the above command, you need to replace 'jegan' with 'your-project-name'
 ```
 ETCDCTL_API=3 etcdctl get "/kubernetes.io/pods/jegan" --prefix --keys-only| sed '/^\s*$/d'
 ```
+
+## Listing all services in your project
+```
+ETCDCTL_API=3 etcdctl get "/kubernetes.io/services/endpoints/jegan" --prefix --keys-only| sed '/^\s*$/d'
+```
