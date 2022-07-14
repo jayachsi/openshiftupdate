@@ -37,4 +37,41 @@
   - System Administrators can also some StorageClasses within OpenShift
     - Storage class automatically provisions the type of storage requested by the applications
   
-   
+ ## Deploying wordpress and mysql with Persistent Volume and Persistent Volume Claim
+ 
+ #### Cloning the repository ( if you haven't done already )
+ ```
+ cd ~
+ git clone https://github.com/tektutor/openshift-july-2022.git
+ ```
+ 
+ #### If you already cloned, then do this
+ ```
+ cd ~
+ cd openshift-july-2022
+ git pull
+ ```
+ 
+ #### Deploying mysql using manifest files
+ ```
+ cd ~/openshift-july-2022/Day4/wordpress
+ 
+ oc apply -f mysql-pv.yml
+ oc apply -f mysql-pvc.yml
+ oc apply -f mysql-deployment.yml
+ oc apply -f mysql-service.yml
+ ```
+ 
+ #### Deploying wordpress using manifest files
+ ```
+ cd ~/openshift-july-2022/Day4/wordpress
+ 
+ oc apply -f wordpress-pv.yml
+ oc apply -f wordpress-pvc.yml
+ oc apply -f wordpress-deployment.yml
+ oc apply -f wordpress-service.yml
+ 
+ oc expose svc/wordpress
+ ```
+
+From the OpenShift webconsole => Developer view => Topology navigate to the wordpress route for accessing wordpress blog.
