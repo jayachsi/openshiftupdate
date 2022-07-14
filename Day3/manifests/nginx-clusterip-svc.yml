@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
+  namespace: tektutor
   labels:
     app: nginx
   name: nginx

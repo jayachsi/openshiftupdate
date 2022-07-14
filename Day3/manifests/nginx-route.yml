@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  creationTimestamp: null
+  namespace: tektutor
   labels:
     app: nginx
   name: nginx
