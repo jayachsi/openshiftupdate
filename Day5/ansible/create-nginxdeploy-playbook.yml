@@ -9,6 +9,7 @@
         apiVersion: apps/v1
         kind: Deployment
         metadata:
+          namespace: tektutor
           labels:
             app: nginx
             ver: "1.23"
