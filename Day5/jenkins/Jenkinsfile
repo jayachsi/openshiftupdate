@@ -6,6 +6,9 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
+                dir("Day5/jenkins") {
+                   sh "pwd"
+                }
                 script {
                     sh "mvn clean compile"
                 }
