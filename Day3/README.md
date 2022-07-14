@@ -163,3 +163,104 @@ oc delete svc/nginx
 oc expose deploy/nginx --type=LoadBalancer --port=8080 --dry-run=client -o yaml > nginx-lb-svc.yml
 oc apply -f nginx-lb-svc.yml
 ```
+
+## Creating replicaset declaratively
+
+In case, you haven't cloned the repo so far, you may do now
+```
+cd ~
+git clone https://github.com/tektutor/openshift-july-2022.git
+```
+
+In case, you have already cloned then you may pull delta changes
+```
+cd ~/openshift-july-2022
+git pull
+
+cd Day3/manifests
+```
+
+Delete previous nginx deploy(if any)
+```
+oc delete deploy/nginx
+```
+
+You can create replicaset declaratively now
+```
+cd Day3/manifests
+oc get deploy,rs,po
+oc apply -f nginx-rs.yml
+oc get po
+```
+
+## Creating Pod in declarative style
+
+Let's delete the replicaset declartively
+```
+cd ~/openshift-july-2022/Day3/manifests
+oc delete -f nginx-rs.yml
+```
+
+Create the pod
+```
+oc apply -f nginx-pod.yml
+```
+
+## Performing rolling update
+Let's delete any existing deployments that we have
+```
+cd ~/openshift-july-2022
+git pull
+cd Day3/manifests
+
+oc delete -f nginx-deploy.yml
+```
+
+Let's edit the nginx-deploy.yml and update the bitnami/nginx:latest to bitnami/nginx:1.21
+```
+cd ~/openshift-july-2022
+cd Day3/manifests
+
+oc apply -f nginx-deploy.yml
+```
+
+You may verify the version of container in the deployment
+```
+oc edit deploy/nginx
+oc rollout status deploy/nginx
+oc rollout history deploy/nginx
+
+```
+The expectation is the image version should be bitnami/nginx:1.21
+
+
+Let's edit the nginx-deploy.yml and update the bitnami/nginx:1.21 to bitnami/nginx:1.22
+```
+cd ~/openshift-july-2022
+cd Day3/manifests
+
+oc apply -f nginx-deploy.yml
+```
+
+You may verify the version of container in the deployment
+```
+oc edit deploy/nginx
+oc rollout status deploy/nginx
+oc rollout history deploy/nginx
+```
+The expectation is the image version should be bitnami/nginx:1.22
+
+
+Let's edit the nginx-deploy.yml and update the bitnami/nginx:1.22 to bitnami/nginx:1.23
+```
+cd ~/openshift-july-2022
+cd Day3/manifests
+
+oc apply -f nginx-deploy.yml
+```
+
+You may verify the version of container in the deployment
+```
+oc edit deploy/nginx
+```
+The expectation is the image version should be bitnami/nginx:1.23
