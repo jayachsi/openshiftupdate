@@ -9,7 +9,6 @@
         apiVersion: apps/v1
         kind: Deployment
         metadata:
-          namespace: tektutor
           labels:
             app: nginx
             ver: "1.23"
@@ -22,8 +21,8 @@
           template:
             metadata:
               labels:
-              app: nginx
+                app: nginx
             spec:
-             containers:
-             - image: bitnami/nginx:1.23
-               name: nginx
+              containers:
+              - image: bitnami/nginx:1.23
+                name: nginx
