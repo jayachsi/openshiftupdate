@@ -1,0 +1,28 @@
+- name: This Ansible Playbook will deploy nginx application into OpenShift Cluster
+  hosts: localhost
+  tasks:
+
+  - name: Create a nginx deployment inline 
+    k8s:
+      state: present
+      definition:
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          labels:
+            app: nginx
+            ver: "1.23"
+          name: nginx
+        spec:
+          replicas: 3
+          selector:
+            matchLabels:
+              app: nginx
+          template:
+            metadata:
+              labels:
+              app: nginx
+           spec:
+             containers:
+             - image: bitnami/nginx:1.23
+               name: nginx
