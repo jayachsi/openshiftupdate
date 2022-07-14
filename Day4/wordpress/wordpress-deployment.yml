@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: frontend
+    spec:
+      containers:
+      - image: bitnami/wordpress:5
+        name: wordpress
+        imagePullPolicy:
+        env:
+        - name: WORDPRESS_DATABASE_HOST
+          value: wordpress-mysql.jegan.svc.cluster.local 
+
+        - name: WORDPRESS_DATABASE_PORT_NUMBER
+          value: "3306"
+
+        - name: WORDPRESS_DATABASE_NAME
+          value: wordpress
+
+        - name: WORDPRESS_DATABASE_USER
+          value: root
+
+        - name: WORDPRESS_DATABASE_PASSWORD
+          value: root
+  
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+ 
+        - name: MYSQL_CLIENT_FLAVOR
+          value: mariadb
+
+        - name: MYSQL_CLIENT_DATABASE_ROOT_USER
+          value: root
+
+        - name: MYSQL_CLIENT_DATABASE_ROOT_PASSWORD
+          value: root
+
+        - name: MYSQL_CLIENT_CREATE_DATABASE_NAME
+          value: wordpress 
+
+        - name: MYSQL_CLIENT_DATABASE_HOST
+          value: wordpress-mysql.jegan.svc.cluster.local 
+
+        ports:
+        - containerPort: 8080
+          name: wordpress
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /bitnami 
+      volumes:
+      - name: wordpress-persistent-storage
+        persistentVolumeClaim:
+          claimName: wordpress-pvc

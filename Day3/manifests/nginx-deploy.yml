@@ -1,24 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: nginx
+    ver: "1.23"
   name: nginx
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: nginx
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: nginx
     spec:
       containers:
-      - image: bitnami/nginx:latest
+      - image: bitnami/nginx:1.23
         name: nginx
-        resources: {}
-status: {}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: nginx
+  type: ClusterIP
+---
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: ""
+    name: nginx
+    weight: null
