@@ -2,10 +2,8 @@
   hosts: localhost
   tasks:
   - name: Create a project
-    openshift_raw:
+    k8s:
+      name: tektutor
       api_version: v1
-      kind: Project
-      name: testing
-      description: Testing
-      display_name: "This is a test project."
+      kind: Namespace
       state: present
