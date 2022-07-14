@@ -6,28 +6,28 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                script {
+                dir("Day5/jenkins") {
                     sh "mvn clean compile"
                 }
             }
         }
         stage('Unit Test') {
             steps {
-                script {
+                dir("Day5/jenkins") {
                     sh "mvn test"
                 }
             }
         }
         stage('package') {
             steps {
-                script {
+                dir("Day5/jenkins") {
                     sh "mvn package"
                 }
             }
         }
         stage('Install') {
             steps {
-                script {
+                dir("Day5/jenkins") {
                     sh "mvn install"
                 }
             }
