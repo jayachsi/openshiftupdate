@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tektutor
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  rules:
+  - host: tektutor.apps.ocp.tektutor.org
+    http:
+      paths:
+      - path: /wordpress
+        pathType: Prefix
+        backend:
+          service:
+            name: wordpress
+            port:
+              number: 8080
+      - path: /dotnet
+        pathType: Prefix
+        backend:
+          service:
+            name: devfile-sample-dotnet-60-basic-git 
+            port:
+              number: 8081
+      - path: /python
+        pathType: Prefix
+        backend:
+          service:
+            name: django-psql-example 
+            port:
+              number: 8080
+      - path: /nginx
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx 
+            port:
+              number: 8080
