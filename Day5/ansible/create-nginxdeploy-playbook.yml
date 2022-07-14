@@ -38,11 +38,9 @@
   - name: Create a nginx clusterip service
     k8s:
       state: present
-      definition:
       src: ../../Day3/manifest/nginx-clusterip-svc.yml
 
   - name: Create a nginx public route
     k8s:
       state: present
-      definition:
       src: ../../Day3/manifest/nginx-route.yml
