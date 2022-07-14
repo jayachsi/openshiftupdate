@@ -22,7 +22,7 @@
             metadata:
               labels:
               app: nginx
-           spec:
+            spec:
              containers:
              - image: bitnami/nginx:1.23
                name: nginx
