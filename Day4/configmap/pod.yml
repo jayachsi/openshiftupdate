@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-pod
+      image: bitnami/nginx:latest
+      env:
+      - name: JDK_HOME 
+        valueFrom:
+          configMapKeyRef:
+            name: my-cm
+            key: JDK_HOME 
+      - name: M2_HOME 
+        valueFrom:
+          configMapKeyRef:
+            name: my-cm
+            key: M2_HOME 

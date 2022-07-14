@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-cm
+data:
+  JDK_HOME: /usr/lib/jdk11
+  M2_HOME: /usr/share/maven
