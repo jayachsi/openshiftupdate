@@ -52,26 +52,38 @@
  git pull
  ```
  
- #### Deploying mysql using manifest files
- ```
- cd ~/openshift-july-2022/Day4/wordpress
+#### Deploying mysql using manifest files
+
+Before you start the deployment, 
+ - Update the mysql-pv.yml and replace 'jegan' with 'your-project-name'
+ - Update the mysql-pvc.yml and replace 'jegan' with 'your-project-name'
+
+```
+
+cd ~/openshift-july-2022/Day4/wordpress
  
- oc apply -f mysql-pv.yml
- oc apply -f mysql-pvc.yml
- oc apply -f mysql-deployment.yml
- oc apply -f mysql-service.yml
- ```
+oc apply -f mysql-pv.yml
+oc apply -f mysql-pvc.yml
+oc apply -f mysql-deployment.yml
+oc apply -f mysql-service.yml
+```
  
- #### Deploying wordpress using manifest files
- ```
- cd ~/openshift-july-2022/Day4/wordpress
+#### Deploying wordpress using manifest files
  
- oc apply -f wordpress-pv.yml
- oc apply -f wordpress-pvc.yml
- oc apply -f wordpress-deployment.yml
- oc apply -f wordpress-service.yml
+Before you start the deployment, 
+ - Update the wordpress-pv.yml and replace 'jegan' with 'your-project-name'
+ - Update the wordpress-pvc.yml and replace 'jegan' with 'your-project-name'
+ - Update wordpress-deployment.yml and replace 'jegan' with 'your-project-name'
+
+```
+cd ~/openshift-july-2022/Day4/wordpress
  
- oc expose svc/wordpress
- ```
+oc apply -f wordpress-pv.yml
+oc apply -f wordpress-pvc.yml
+oc apply -f wordpress-deployment.yml
+oc apply -f wordpress-service.yml
+ 
+oc expose svc/wordpress
+```
 
 From the OpenShift webconsole => Developer view => Topology navigate to the wordpress route for accessing wordpress blog.
