@@ -1,0 +1,12 @@
+- name: This Ansible Playbook will create an OpenShift Project
+  hosts: localhost
+  tasks:
+  - name: Create project
+    oc:
+      state: present
+      inline:
+        kind: ProjectRequest
+        metadata:
+          name: ansibletestproject
+        displayName: Ansible Test Project
+        description: This project was created using Ansible
