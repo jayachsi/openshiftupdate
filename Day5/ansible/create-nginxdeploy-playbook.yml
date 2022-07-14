@@ -2,6 +2,13 @@
   hosts: localhost
   tasks:
 
+  - name: Create a k8s namespace
+    k8s:
+      name: tektutor
+      api_version: v1
+      kind: Namespace
+      state: present
+
   - name: Create a nginx deployment inline 
     k8s:
       state: present
@@ -27,3 +34,15 @@
               containers:
               - image: bitnami/nginx:1.23
                 name: nginx
+
+  - name: Create a nginx clusterip service
+    k8s:
+      state: present
+      definition:
+      src: ../../Day3/manifest/nginx-clusterip-svc.yml
+
+  - name: Create a nginx public route
+    k8s:
+      state: present
+      definition:
+      src: ../../Day3/manifest/nginx-route.yml
