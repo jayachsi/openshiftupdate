@@ -59,7 +59,6 @@ Before you start the deployment,
  - Update the mysql-pvc.yml and replace 'jegan' with 'your-project-name'
 
 ```
-
 cd ~/openshift-july-2022/Day4/wordpress
  
 oc apply -f mysql-pv.yml
@@ -87,3 +86,105 @@ oc expose svc/wordpress
 ```
 
 From the OpenShift webconsole => Developer view => Topology navigate to the wordpress route for accessing wordpress blog.
+
+## Deployment vs DeploymentConfig
+- In older version of Kubernetes there was no Deployment and Replicaset.  Instead only, ReplicationController was there.
+- ReplicationController was supported Scaling up/down and Rolling update in older version of K8s
+- At the time, OpenShift introducted DeploymentConfig
+
+- Latest version of Kubernetes, they refactored ReplicationController into two Resources
+  1. Deployment
+     - managed by DeploymentController
+     - supports Rolling Update
+  2. ReplicaSet
+     - managed by ReplicaSetController
+     - supports Scale up/down
+
+- As OpenShift is developed on top of Kubernetes, in newer versions of OpenShift both Deployment and DeployConfig are supported
+- For new deployments, see if you can Deployment as opposed to DeploymentConfig
+
+## Ingress
+
+#### Overview
+- it is a set of routing(redirection) rules
+- the Ingress that we create are picked by Ingress Controller in OpenShift dynamically and configures the HAProxy
+  Load Balancer to redirect the calls to different service backends
+- in the absence of Ingress Controller and Load Balancer(HAProxy), the Ingress rules will not work
+- OpenShift supports Ingress Controller and HAProxy by default
+
+```
+cd ~/openshift-july-2022/Day4/ingress
+
+oc apply -f ingress.yml
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc apply -f ingress.yml</b>
+ingress.networking.k8s.io/tektutor created
+</pre>
+
+
+#### You may try listing the ingress
+```
+oc get ingress
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc get ingress</b>
+NAME       CLASS    HOSTS                            ADDRESS   PORTS   AGE
+tektutor   <none>   tektutor.apps.ocp.tektutor.org             80      32s
+</pre>
+
+
+#### You may try describing the ingress
+```
+oc describe ingress/tektutor
+```
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc describe ingress/tektutor</b>
+Name:             tektutor
+Labels:           <none>
+Namespace:        jegan
+Address:          
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host                            Path  Backends
+  ----                            ----  --------
+  tektutor.apps.ocp.tektutor.org  
+                                  /wordpress   wordpress:8080 (Pod endpoints)
+                                  /dotnet      devfile-sample-dotnet-60-basic-git:8081 (Pod endpoints)
+                                  /python      django-psql-example:8080 (Pod endpoints)
+                                  /nginx       nginx:8080 (Pod endpoints)
+Annotations:                      haproxy.router.openshift.io/rewrite-target: /
+Events:                           <none>
+</pre>
+
+
+#### Testing the ingress
+
+Use the below url from your browser
+```
+tektutor.apps.ocp.tektutor.org
+```
+
+Below url will redirect the call to wordpress service
+```
+tektutor.apps.ocp.tektutor.org/wordress
+```
+
+Below url will redirect the call to dotnet service(.net 6 based application)
+```
+tektutor.apps.ocp.tektutor.org/dotnet
+```
+
+Below url will redirect the call to python service(django with postgres application)
+```
+tektutor.apps.ocp.tektutor.org/python
+```
+
+Below url will redirect the call to nginx service(nginx)
+```
+tektutor.apps.ocp.tektutor.org/nginx
+```
