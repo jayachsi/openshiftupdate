@@ -363,6 +363,79 @@ Processing triggers for libc-bin (2.23-0ubuntu11.3) ...
 root@ubuntu2:/# 
 </pre>
 
+#### Get inside ubuntu1 container,find its IP address and list routing table
+```
+docker exec -it ubuntu1 bash
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker exec -it ubuntu1 bash</b>
+root@ubuntu1:/# <b>ifconfig</b>
+eth0      Link encap:Ethernet  HWaddr 02:42:ac:12:00:02  
+          inet addr:172.18.0.2  Bcast:172.18.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:4996 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3949 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:21180907 (21.1 MB)  TX bytes:266513 (266.5 KB)
+
+eth1      Link encap:Ethernet  HWaddr 02:42:ac:13:00:03  
+          inet addr:172.19.0.3  Bcast:172.19.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:86 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:15142 (15.1 KB)  TX bytes:0 (0.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:6 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:6 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:946 (946.0 B)  TX bytes:946 (946.0 B)
+
+root@ubuntu1:/# <b>route</b>
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         172.18.0.1      0.0.0.0         UG    0      0        0 eth0
+172.18.0.0      *               255.255.0.0     U     0      0        0 eth0
+172.19.0.0      *               255.255.0.0     U     0      0        0 eth1
+root@ubuntu1:/#          
+</pre>
+
+#### Get inside ubuntu2 container,find its IP address and list routing table
+```
+docker exec -it ubuntu2 bash
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>docker exec -it ubuntu2 bash</b>
+root@ubuntu2:/# <b>ifconfig</b>
+eth0      Link encap:Ethernet  HWaddr 02:42:ac:13:00:02  
+          inet addr:172.19.0.2  Bcast:172.19.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:10958 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:6998 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:21576879 (21.5 MB)  TX bytes:467819 (467.8 KB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:6 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:6 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:762 (762.0 B)  TX bytes:762 (762.0 B)
+
+root@ubuntu2:/# <b>route</b>
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         172.19.0.1      0.0.0.0         UG    0      0        0 eth0
+172.19.0.0      *               255.255.0.0     U     0      0        0 eth0
+</pre>
 
 ## OpenShift Network Model
 
