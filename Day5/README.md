@@ -1,5 +1,17 @@
 # Day5
 
+## HELM
+- package manager for OpenShift and Kubernetes applications
+- it helps us in packaging the Cloud Native (Kubernetes/OpenShift) applications
+- the packaged application is called Chart
+
+#### Installing Helm in your system
+```
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+```
+
 ## Docker Network Model
 - Docker supports the below types of Network
   1. bridge
