@@ -2,6 +2,7 @@ kind: "BuildConfig"
 apiVersion: build.openshift.io/v1 
 metadata:
   name: "hello-microservice"
+  namespace: tektutor
 spec:
   source:
     git:
