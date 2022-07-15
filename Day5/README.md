@@ -613,7 +613,27 @@ Customer has one or more Address
  - most of them doesn't support ACID property
  - doesn't transaction management 
  
- 
+
+## Creating Credential Type in Ansible Automation Platform
+Paste the below under Input Configuration
+<pre>
+fields:
+  - id: kube_config
+    type: string
+    label: kubeconfig
+    secret: true
+    multiline: true
+required:
+  - kube_config
+</pre>
+
+Paste the below under Inject Configuration
+<pre>
+env:
+  K8S_AUTH_KUBECONFIG: '{{ tower.filename.kubeconfig }}'
+file:
+  template.kubeconfig: '{{ kube_config }}'
+</pre>
 
 
 
