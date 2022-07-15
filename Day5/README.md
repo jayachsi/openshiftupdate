@@ -534,3 +534,6 @@ type: Opaque
 oc new-project jegan
 oc new-app jenkins-ephemeral
 ```
+
+## Securing your application routes with TLS Termination
+
