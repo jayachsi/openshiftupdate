@@ -15,7 +15,7 @@ spec:
           service:
             name: wordpress
             port:
-              number: 8080
+          number: 8080
       - path: /dotnet
         pathType: Prefix
         backend:
