@@ -488,8 +488,21 @@ https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-c
 OpenShift multus CNI, allows using many different Network CNIs in the same cluster unlike Kubernetes which supports only one Network CNI at a time.
 
 
-## Retrive RedHat Ansible Automation Platform Password from OpenShift
+## Installing RedHat Ansible Automation Platform in RedHat OpenShift
+<pre>
+RedHat OpenShift webconsole => Administrator => Operators => OperatorHub => Search Ansible Automation Platform => Install
+</pre>
+
+#### Configuring RedHat Ansible Automation Platform
+This depends on Persistent Volume of 8Gi capacity.  I named my automation controller as 'awx'.
+
+<pre>
+RedHat OpenShift webconsole => Installed Operators => Ansible Automation Platform => Automation Controller => Create Automation Controller
+</pre>
+
+## Retrive RedHat Ansible Automation Platform admin user Password from OpenShift
 ```
+oc get secret/awx-admin-password -o yaml -n ansible-automation-platform
 ```
 
 Expected output
@@ -521,4 +534,3 @@ type: Opaque
 oc new-project jegan
 oc new-app jenkins-ephemeral
 ```
-
