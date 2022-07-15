@@ -486,3 +486,39 @@ https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-c
 - Weave supports Network Policies
 
 OpenShift multus CNI, allows using many different Network CNIs in the same cluster unlike Kubernetes which supports only one Network CNI at a time.
+
+
+## Retrive RedHat Ansible Automation Platform Password from OpenShift
+```
+```
+
+Expected output
+<pre>
+(jegan@tektutor.org)$ <b>oc get secret/awx-admin-password -o yaml -n ansible-automation-platform</b>
+apiVersion: v1
+data:
+  <b>password: Y2QxVnA3TDlCejZDV1hDZzRiZGxRUnVIRUJCRnZraVo=</b>
+kind: Secret
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"v1","kind":"Secret","metadata":{"labels":{"app.kubernetes.io/component":"automationcontroller","app.kubernetes.io/managed-by":"automationcontroller-operator","app.kubernetes.io/name":"awx","app.kubernetes.io/operator-version":"","app.kubernetes.io/part-of":"awx"},"name":"awx-admin-password","namespace":"ansible-automation-platform"},"stringData":{"password":"cd1Vp7L9Bz6CWXCg4bdlQRuHEBBFvkiZ"}}'
+  creationTimestamp: "2022-07-14T17:05:02Z"
+  labels:
+    app.kubernetes.io/component: automationcontroller
+    app.kubernetes.io/managed-by: automationcontroller-operator
+    app.kubernetes.io/name: awx
+    app.kubernetes.io/operator-version: ""
+    app.kubernetes.io/part-of: awx
+  name: awx-admin-password
+  namespace: ansible-automation-platform
+  resourceVersion: "2375617"
+  uid: 3ae527be-0ba3-43bd-8eaf-1b595b07ae24
+type: Opaque
+</pre>
+
+## Deploying Jenkins within RedHat OpenShift
+```
+oc new-project jegan
+oc new-app jenkins-ephemeral
+```
+
