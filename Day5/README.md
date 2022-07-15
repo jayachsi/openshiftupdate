@@ -439,3 +439,50 @@ default         172.19.0.1      0.0.0.0         UG    0      0        0 eth0
 
 ## OpenShift Network Model
 
+You may find this article useful
+<pre>
+https://www.suse.com/c/rancher_blog/comparing-kubernetes-cni-providers-flannel-calico-canal-and-weave/
+</pre>
+
+- RedHat OpenShift follows Kubernetes Network Model as OpenShift is just Kubernetes with extra features
+
+- Kubernetes Network Model specification says
+  - kubelet container agent should be able to communicate with all pods on the node where kubelet is running
+  - all Pods from every nodes should be able to communicate with each other
+
+- The challenge is, Pod are assigned with Private IP, hence their IPs are accessible only within the node they are running
+- But Kubernetes Network requirement is that, a Pod P1 running in Node N1 should be able to communicate with another Pod P2 running in Node N2
+- In an ideal world this isn't possible, as the Pod P2 IP from Node N1 is invalid(inaccessible). Pod P1 IP from Node N2 is invalid(inaccessible as they are private to that machine)
+- Kubernetes Network specifications are implemented by third-party Network vendors
+- There are many Kubernetes Network add-ons, however the below are the most popular/common ones used in the industry
+  1. calico
+  2. flannel
+  3. weave
+
+#### Calico
+- Project calico is developed and maintained by a company called Tigera
+- Calico Kubernetes CNI is based on BGP routing protocol
+- Apart from implementing Kubernetes Network Specifications, it also supports defining Network Policies for your application Pods
+- Offers the best network performance as it doesn't encapsulate/de-encapsulate packets while forwarding/consuming network packets
+
+#### Flannel
+- Flannel is developed by CoreOS
+- Flannel is based on Overlay Network
+- Flannel deploys a flanneld Pod on every nodes as a DaemonSet
+- flanneld on each nodes communicates and learns about neighbout node network topology
+- Flannel wraps the outgoing packets in an UDP packet using source and destination IPs as the OpenShift Node IPs
+- Flannel de-encapsulates the incoming UDP packet before forwarding to the destination Pods running on the node
+- Flannel is easy install and understand
+- Flannel doesn't support Network Policy
+- Flannel performance isn't that great compared to Calico
+
+#### Weave
+- Weave is developed by WeaveWorks
+- creates a mesh of overlay networks
+- installs a routing component on every node
+- the routing components on each node exchanges network topology information
+- Weave learns fast routing paths to each node as there might be many ways to reach one node from other
+- Weave also has features to communicate with nodes for which there is no know route
+- Weave supports Network Policies
+
+OpenShift multus CNI, allows using many different Network CNIs in the same cluster unlike Kubernetes which supports only one Network CNI at a time.
