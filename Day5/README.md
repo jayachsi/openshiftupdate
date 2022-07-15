@@ -549,3 +549,71 @@ oc new-app jenkins-ephemeral
 
 ## Securing your application routes with TLS Termination
 
+## What is a Microservice?
+- indepenently deployment application that represents one functionality
+- microservice aren't supposed to be aware of other microservices
+- microservices communicate with other via some message queue (Rabbit MQ) or streams (Apache kafka)
+- can be implemented in many different langauages
+- every microservice supports REST API
+- normally they are containarized and deployed in Orchestration platforms like Kubernetes/OpenShift
+- they are cloud native applications
+- distribution computing
+
+## Monolithic vs Microservice
+- Monolithic applications
+  - they use centralized database typically RDBMS( Oracle, mysql, etc., )
+  - supports many features
+  - RDBMS databases 
+    - support ACID property by default
+    - transaction Atomicity 
+    -  either all transaction are commited or rolled back if transaction is incomplete
+  - easy to deploy
+  - easy to troubleshoot
+  - drawbacks
+    - even a small change, requires building and testing the entire application before it can be released
+    - frequent releases are not possible
+    - not easy to scale up
+- Microservice architecture
+  - Benefits
+    - a single product may have several 100s or 1000s of independent microservices
+    - each microservice technically can be developed in different programming language stack based on need
+    - they can scaled up/down independently
+    - they can be released independently
+    - any change in one microservice most will have 0 impacts on other microservices
+    - change in one microservie doesn't require compiling, packaging, testing and release the entire product is not required
+    - nosql database are preferred over the traditional RDBMS
+ - Drawabacks
+   - troubleshoot is a nightmare
+   - checking logs is very difficult, we need sophiscated tools like ELK, EFK, Splunk, etc to check the logs from a centralized location
+   - deploying different microservices
+   - we can't use traditional databases like RDBMS ( Oracle, MySQL )
+   - 
+   
+Customer
+Address
+PaymentMethod
+
+Customer has one or more Address
+  - name
+  - id
+  Address
+   - Address1
+   - Address2
+   - Address3
+  PaymentMethods
+   - PaymentMethod1
+   - PaymentMethod2
+   - PaymentMethod3
+   
+
+## Benefits of nosql databases
+ - data is stored flat as documents (JSON, YAML, etc,)
+ 
+## Drawbacks of nosql databases
+ - most of them doesn't support ACID property
+ - doesn't transaction management 
+ 
+ 
+
+
+
